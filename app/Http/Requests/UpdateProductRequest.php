@@ -29,7 +29,7 @@ class UpdateProductRequest extends FormRequest
             'old_images' => 'nullable|array',
             'old_images.*' => 'integer|exists:product_images,id',
             'new_images' => 'nullable|array|max:10',
-            'new_images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'new_images.*' => 'image|mimes:jpeg,png,jpg,gif,webp',
         ];
     }
 
@@ -44,7 +44,6 @@ class UpdateProductRequest extends FormRequest
             'category_id.exists' => 'The selected category does not exist.',
             'slug.unique' => 'This slug is already taken.',
             'new_images.*.image' => 'Each file must be a valid image.',
-            'new_images.*.max' => 'Each image may not be greater than 5MB.',
             'old_images.*.exists' => 'One of the existing images does not exist.',
         ];
     }

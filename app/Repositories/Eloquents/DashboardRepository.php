@@ -47,4 +47,24 @@ class DashboardRepository implements DashboardRepositoryInterface
     {
         return Product::count();
     }
+
+    public function totalVisitorsAllTime(): int
+    {
+        return Guest::count();
+    }
+
+    public function totalOrdersCountAllTime(): int
+    {
+        return Order::count();
+    }
+
+    public function totalOrdersRevenueAllTime(): float
+    {
+        return (float) Order::where('status', 'completed')->sum('total_price');
+    }
+
+    public function totalProductCountAllTime(): int
+    {
+        return Product::count();
+    }
 }

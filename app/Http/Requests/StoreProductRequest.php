@@ -38,8 +38,8 @@ class StoreProductRequest extends FormRequest
             'main_features' => 'nullable|array|max:10',
             'main_features.*' => 'required|string|max:255|distinct',
             'is_featured' => 'nullable|boolean',
-            'images' => 'nullable|array|min:1|max:10',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'images' => 'required|array|min:1|max:10',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
         ];
     }
 
@@ -89,7 +89,6 @@ class StoreProductRequest extends FormRequest
     'images.max' => 'Number of images must not exceed 10',
     'images.*.image' => 'Each file must be an image',
     'images.*.mimes' => 'Allowed image types: jpeg, png, jpg, gif, webp',
-    'images.*.max' => 'Each image must not exceed 5MB',
 
     // Discount percentage validation messages
     'discount_percentage.numeric' => 'Discount percentage must be a number',
