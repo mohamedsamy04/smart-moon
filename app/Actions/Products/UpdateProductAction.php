@@ -34,6 +34,7 @@ class UpdateProductAction
             'category_id' => $data['category_id'] ?? $product->category_id,
             'slug' => $data['slug'] ?? $product->slug,
             'is_featured' => $data['is_featured'] ?? $product->is_featured,
+            'main_features' => $data['main_features'] ?? $product->main_features,
         ]);
 
         return $this->productRepository->findById($product->id)->load('images');

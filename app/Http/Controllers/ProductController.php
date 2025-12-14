@@ -70,7 +70,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
-        $data = $request->only(['name', 'description', 'price', 'category_id', 'slug', 'is_featured', 'main_features']);
+        $data = $request->only(['name', 'description', 'price', 'category_id', 'slug', 'is_featured', 'main_features', 'discount_percentage']);
         $oldImages = $request->input('old_images', []);
         $newImages = $request->file('new_images', []);
 
