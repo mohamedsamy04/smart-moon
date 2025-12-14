@@ -12,6 +12,7 @@ class Product extends BaseModel
         'price',
         'description',
         'category_id',
+        'company_id',
         'main_features',
         'is_featured',
         'slug',
@@ -20,29 +21,34 @@ class Product extends BaseModel
     ];
 
     protected static function boot()
-{
-    parent::boot();
+    {
+        parent::boot();
 
-    static::creating(function ($product) {
-        if (empty($product->slug)) {
-            $baseSlug = Str::slug($product->name);
-            $slug = $baseSlug;
-            $count = 1;
+        static::creating(function ($product) {
+            if (empty($product->slug)) {
+                $baseSlug = Str::slug($product->name);
+                $slug = $baseSlug;
+                $count = 1;
 
-            // تأمين تكرار المنتجات بنفس الاسم
-            while (self::where('slug', $slug)->exists()) {
-                $slug = $baseSlug . '-' . $count++;
+                // تأمين تكرار المنتجات بنفس الاسم
+                while (self::where('slug', $slug)->exists()) {
+                    $slug = $baseSlug . '-' . $count++;
+                }
+
+                $product->slug = $slug;
             }
-
-            $product->slug = $slug;
-        }
-    });
-}
+        });
+    }
 
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 
     public function images()

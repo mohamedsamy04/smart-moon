@@ -7,13 +7,11 @@ use App\Services\DirectCheckoutService;
 
 class DirectCheckoutController extends Controller
 {
-    public function __construct(protected DirectCheckoutService $service)
-    {
-    }
+    public function __construct(protected DirectCheckoutService $service) {}
 
     public function checkout(DirectCheckoutRequest $request)
     {
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
 
         $productId = $request->product_id;
         $quantity = $request->quantity ?? 1;

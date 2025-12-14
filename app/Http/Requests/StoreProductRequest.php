@@ -27,6 +27,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'required|string|max:5000',
             'price' => 'required|numeric|min:0|max:9999999.99',
             'category_id' => 'required|integer|exists:categories,id',
+            'company_id' => 'required|integer|exists:companies,id',
             'slug' => [
                 'nullable',
                 'string',
@@ -45,55 +46,59 @@ class StoreProductRequest extends FormRequest
 
     public function messages(): array
     {
-       return [
-    // Name validation messages
-    'name.required' => 'Product name is required',
-    'name.string' => 'Product name must be a string',
-    'name.max' => 'Product name must not exceed 255 characters',
+        return [
+            // Name validation messages
+            'name.required' => 'Product name is required',
+            'name.string' => 'Product name must be a string',
+            'name.max' => 'Product name must not exceed 255 characters',
 
-    // Description validation messages
-    'description.required' => 'Product description is required',
-    'description.string' => 'Description must be a string',
-    'description.max' => 'Description must not exceed 5000 characters',
+            // Description validation messages
+            'description.required' => 'Product description is required',
+            'description.string' => 'Description must be a string',
+            'description.max' => 'Description must not exceed 5000 characters',
 
-    // Price validation messages
-    'price.required' => 'Product price is required',
-    'price.numeric' => 'Price must be a number',
-    'price.min' => 'Price must be greater than or equal to zero',
-    'price.max' => 'Price is too high',
+            // Price validation messages
+            'price.required' => 'Product price is required',
+            'price.numeric' => 'Price must be a number',
+            'price.min' => 'Price must be greater than or equal to zero',
+            'price.max' => 'Price is too high',
 
-    // Category validation messages
-    'category_id.required' => 'Product category is required',
-    'category_id.integer' => 'Category must be an integer',
-    'category_id.exists' => 'Selected category does not exist',
+            // Category validation messages
+            'category_id.required' => 'Product category is required',
+            'category_id.integer' => 'Category must be an integer',
+            'category_id.exists' => 'Selected category does not exist',
 
-    // Slug validation messages
-    'slug.unique' => 'This slug already exists',
-    'slug.regex' => 'Slug must contain only lowercase letters, numbers, and hyphens (e.g., product-name-123)',
-    'slug.max' => 'Slug must not exceed 255 characters',
+            // Company validation messages
+            'company_id.required' => 'Product company is required',
+            'company_id.integer' => 'Company must be an integer',
+            'company_id.exists' => 'Selected company does not exist',
 
-    // Main features validation messages
-    'main_features.array' => 'Main features must be an array',
-    'main_features.max' => 'Number of main features must not exceed 10',
-    'main_features.*.required' => 'Each feature must be provided',
-    'main_features.*.string' => 'Each feature must be a string',
-    'main_features.*.max' => 'Each feature must not exceed 255 characters',
-    'main_features.*.distinct' => 'Features must be unique',
+            // Slug validation messages
+            'slug.unique' => 'This slug already exists',
+            'slug.regex' => 'Slug must contain only lowercase letters, numbers, and hyphens (e.g., product-name-123)',
+            'slug.max' => 'Slug must not exceed 255 characters',
 
-    // Is featured validation messages
-    'is_featured.boolean' => 'Featured status must be true or false',
+            // Main features validation messages
+            'main_features.array' => 'Main features must be an array',
+            'main_features.max' => 'Number of main features must not exceed 10',
+            'main_features.*.required' => 'Each feature must be provided',
+            'main_features.*.string' => 'Each feature must be a string',
+            'main_features.*.max' => 'Each feature must not exceed 255 characters',
+            'main_features.*.distinct' => 'Features must be unique',
 
-    // Images validation messages
-    'images.array' => 'Images must be an array',
-    'images.min' => 'At least one image must be uploaded',
-    'images.max' => 'Number of images must not exceed 10',
-    'images.*.image' => 'Each file must be an image',
-    'images.*.mimes' => 'Allowed image types: jpeg, png, jpg, gif, webp',
+            // Is featured validation messages
+            'is_featured.boolean' => 'Featured status must be true or false',
 
-    // Discount percentage validation messages
-    'discount_percentage.numeric' => 'Discount percentage must be a number',
-    'discount_percentage.between' => 'Discount percentage must be between 0 and 100',
-];
+            // Images validation messages
+            'images.array' => 'Images must be an array',
+            'images.min' => 'At least one image must be uploaded',
+            'images.max' => 'Number of images must not exceed 10',
+            'images.*.image' => 'Each file must be an image',
+            'images.*.mimes' => 'Allowed image types: jpeg, png, jpg, gif, webp',
 
+            // Discount percentage validation messages
+            'discount_percentage.numeric' => 'Discount percentage must be a number',
+            'discount_percentage.between' => 'Discount percentage must be between 0 and 100',
+        ];
     }
 }

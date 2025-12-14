@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Actions\Categories;
+namespace App\Actions\Companies;
 
-use App\Repositories\Interfaces\CategoryRepositoryInterface;
-use App\Models\Category;
+use App\Repositories\Interfaces\CompanyRepositoryInterface;
+use App\Models\Company;
 use Illuminate\Support\Str;
 
 
-class CreateCategoryAction
+class CreateCompanyAction
 {
 
     public function __construct(
-        protected CategoryRepositoryInterface $categoryRepository
+        protected CompanyRepositoryInterface $companyRepository
     ) {
         //
     }
 
-    public function execute(array $data): Category
+    public function execute(array $data): Company
     {
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
@@ -26,10 +26,10 @@ class CreateCategoryAction
         if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
             $image = $data['image'];
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('categories', $imageName, 'public');
+            $imagePath = $image->storeAs('companies', $imageName, 'public');
             $data['image'] = $imagePath;
         }
 
-        return $this->categoryRepository->create($data);
+        return $this->companyRepository->create($data);
     }
 }

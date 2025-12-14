@@ -24,6 +24,17 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The category name is required.',
+            'description.required' => 'The category description is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'Allowed image types: jpeg, png, jpg, gif, webp.',
         ];
     }
 }

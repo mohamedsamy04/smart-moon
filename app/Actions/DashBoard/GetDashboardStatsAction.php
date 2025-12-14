@@ -11,18 +11,11 @@ class GetDashboardStatsAction
      */
     public function __construct(
         protected DashboardRepositoryInterface $repo
-    ) {
-    }
+    ) {}
 
-      public function execute(): array
+    public function execute(): array
     {
         return [
-            'overall' => [
-                'total_visitors' => $this->repo->totalVisitorsAllTime(),
-                'total_orders' => $this->repo->totalOrdersCountAllTime(),
-                'total_revenue' => $this->repo->totalOrdersRevenueAllTime(),
-                'total_products' => $this->repo->totalProductCountAllTime(),
-            ],
             'daily' => [
                 'visitors' => $this->repo->totalVisitors('daily'),
                 'orders_count' => $this->repo->totalOrdersCount('daily'),
@@ -38,6 +31,12 @@ class GetDashboardStatsAction
                 'orders_count' => $this->repo->totalOrdersCount('yearly'),
                 'revenue' => $this->repo->totalOrdersRevenue('yearly'),
             ],
+            'overall' => [
+                'total_visitors' => $this->repo->totalVisitorsAllTime(),
+                'total_orders' => $this->repo->totalOrdersCountAllTime(),
+                'total_revenue' => $this->repo->totalOrdersRevenueAllTime(),
+                'total_products' => $this->repo->totalProductCountAllTime(),
+            ]
         ];
     }
 }

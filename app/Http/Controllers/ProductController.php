@@ -25,7 +25,7 @@ class ProductController extends Controller
         $filters = $request->only(['search', 'min_price', 'max_price']);
         $perPage = (int) $request->input('per_page', 15);
 
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
         if ($categoryId) {
             $products = $this->productService->getProductsByCategory($categoryId, $filters, $perPage);
         } else {
@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function show(Request $request, $id): JsonResponse
     {
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
         $product = $this->productService->getProduct($id)->load('images', 'category');
         return response()->json([
             'guest_id' => $guestId,
@@ -53,7 +53,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        $data = $request->only(['name', 'description', 'price', 'category_id', 'slug', 'is_featured', 'main_features', 'discount_percentage']);
+        $data = $request->only(['name', 'description', 'price', 'category_id', 'company_id', 'slug', 'is_featured', 'main_features', 'discount_percentage']);
         $images = $request->file('images', []);
 
         $product = $this->productService->createProduct($data, $images);
@@ -70,7 +70,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
-        $data = $request->only(['name', 'description', 'price', 'category_id', 'slug', 'is_featured', 'main_features', 'discount_percentage']);
+        $data = $request->only(['name', 'description', 'price', 'category_id', 'company_id', 'slug', 'is_featured', 'main_features', 'discount_percentage']);
         $oldImages = $request->input('old_images', []);
         $newImages = $request->file('new_images', []);
 

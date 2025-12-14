@@ -11,6 +11,7 @@ use App\Repositories\Interfaces\DirectCheckoutRepositoryInterface;
 use App\Repositories\Interfaces\AdminOrderRepositoryInterface;
 use App\Repositories\Interfaces\CartCheckoutRepositoryInterface;
 use App\Repositories\Interfaces\DashboardRepositoryInterface;
+use App\Repositories\Interfaces\CompanyRepositoryInterface;
 
 use App\Repositories\Eloquents\UserRepository;
 use App\Repositories\Eloquents\CategoryRepository;
@@ -20,6 +21,7 @@ use App\Repositories\Eloquents\DirectCheckoutRepository;
 use App\Repositories\Eloquents\AdminOrderRepository;
 use App\Repositories\Eloquents\CartCheckoutRepository;
 use App\Repositories\Eloquents\DashboardRepository;
+use App\Repositories\Eloquents\CompanyRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AdminOrderRepositoryInterface::class, AdminOrderRepository::class);
         $this->app->bind(CartCheckoutRepositoryInterface::class, CartCheckoutRepository::class);
         $this->app->bind(DashboardRepositoryInterface::class, DashboardRepository::class);
+        $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
     }
 
     /**

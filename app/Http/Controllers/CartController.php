@@ -34,7 +34,7 @@ class CartController extends Controller
 
     public function add(AddToCartRequest $request)
     {
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
         $item = $this->cartService->addToCart(
             $guestId,
             $request->product_id,
@@ -46,7 +46,7 @@ class CartController extends Controller
 
     public function remove(string $id, Request $request)
     {
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
 
         if ($this->cartService->getCart($guestId)->isEmpty()) {
             return response()->json([
@@ -70,7 +70,7 @@ class CartController extends Controller
 
     public function update(UpdateCartRequest $request, int $itemId)
     {
-        $guestId = $request->guest_id;
+        $guestId = $request->attributes->get('guest_id');
 
         $response = $this->cartService->updateCartQuantity(
             $guestId,

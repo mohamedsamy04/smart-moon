@@ -19,7 +19,8 @@ class UpdateProductRequest extends FormRequest
             'description' => 'required|string|max:5000',
             'price' => 'required|numeric|min:0|max:9999999.99',
             'category_id' => 'required|integer|exists:categories,id',
-            'slug' => ['sometimes','string','max:255','regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('products','slug')->ignore($this->route('id'))],
+            'company_id' => 'required|integer|exists:companies,id',
+            'slug' => ['sometimes', 'string', 'max:255', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('products', 'slug')->ignore($this->route('id'))],
             'is_featured' => 'required|boolean',
             'main_features' => 'sometimes|array|max:10',
             'main_features.*' => 'string|max:255|distinct',
@@ -57,6 +58,11 @@ class UpdateProductRequest extends FormRequest
             'category_id.integer' => 'Category must be an integer',
             'category_id.exists' => 'Selected category does not exist',
 
+            // Company validation messages
+            'company_id.required' => 'Product company is required',
+            'company_id.integer' => 'Company must be an integer',
+            'company_id.exists' => 'Selected company does not exist',
+
             // Slug validation messages
             'slug.unique' => 'This slug already exists',
             'slug.regex' => 'Slug must contain only lowercase letters, numbers, and hyphens (e.g., product-name-123)',
@@ -86,7 +92,6 @@ class UpdateProductRequest extends FormRequest
             'new_images.max' => 'Number of new images must not exceed 10',
             'new_images.*.image' => 'Each file must be a valid image',
             'new_images.*.mimes' => 'Allowed image types: jpeg, png, jpg, gif, webp',
-            'new_images.*.max' => 'Each image must not exceed 5MB',
         ];
     }
 }
