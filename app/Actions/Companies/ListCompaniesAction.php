@@ -13,7 +13,7 @@ class ListCompaniesAction
         //
     }
 
-    public function execute(array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function execute(array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         return $this->companyRepository->list($filters, $perPage);
     }

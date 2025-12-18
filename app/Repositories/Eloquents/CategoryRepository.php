@@ -14,7 +14,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         return Category::create($data);
     }
 
-    public function findAll(array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function findAll(array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         return Category::query()
             ->when(

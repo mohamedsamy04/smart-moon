@@ -11,5 +11,5 @@ interface CompanyRepositoryInterface
     public function update(int $id, array $data): ?Company;
     public function delete(int $id): bool;
     public function findById(int $id): ?Company;
-    public function list(array $filters = [], int $perPage = 15): LengthAwarePaginator;
+    public function list(array $filters = [], int $perPage = 8): LengthAwarePaginator;
 }

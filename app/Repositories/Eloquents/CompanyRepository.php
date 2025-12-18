@@ -37,7 +37,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         return Company::find($id);
     }
 
-    public function list(array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function list(array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         $query = Company::query();
 

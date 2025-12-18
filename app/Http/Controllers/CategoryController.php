@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index(Request $request): JsonResponse
     {
         $filters = $request->only(['search']);
-        $perPage = $request->get('perPage', 15);
+        $perPage = $request->get('perPage', 8);
 
         $guestId = $request->attributes->get('guest_id');
 
