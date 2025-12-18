@@ -15,7 +15,7 @@ class ListProductsAction
     /**
      * Execute the action.
      */
-    public function execute(array $filters = [], bool $withImages = true, int $perPage = 15): LengthAwarePaginator
+    public function execute(array $filters = [], bool $withImages = true, int $perPage = 8): LengthAwarePaginator
     {
         return $this->productRepository->findAll($filters, $withImages, $perPage);
     }

@@ -36,7 +36,7 @@ class ProductService
     /**
      * Get products by category.
      */
-    public function getProductsByCategory(int $categoryId, array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function getProductsByCategory(int $categoryId, array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         return $this->listProductsByCategoryAction->execute($categoryId, $filters, $perPage);
     }
@@ -77,7 +77,7 @@ class ProductService
         });
     }
 
-    public function listProducts(array $filters = [], bool $withImages = true, int $perPage = 15): LengthAwarePaginator
+    public function listProducts(array $filters = [], bool $withImages = true, int $perPage = 8): LengthAwarePaginator
     {
         return $this->listProductsAction->execute($filters, $withImages, $perPage);
     }

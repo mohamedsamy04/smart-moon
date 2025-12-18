@@ -17,7 +17,7 @@ class ProductRepository implements ProductRepositoryInterface
 
 
 
-    public function findAll(array $filters = [], bool $withImages = true, int $perPage = 15): LengthAwarePaginator
+    public function findAll(array $filters = [], bool $withImages = true, int $perPage = 8): LengthAwarePaginator
     {
         $query = Product::query();
         if ($withImages) {
@@ -103,7 +103,7 @@ class ProductRepository implements ProductRepositoryInterface
     }
 
 
-    public function findByCategory(int $categoryId, array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function findByCategory(int $categoryId, array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         $query = Product::where('category_id', $categoryId);
 
@@ -134,7 +134,7 @@ class ProductRepository implements ProductRepositoryInterface
         return $query->paginate($perPage);
     }
 
-    public function findByCategoryId(int $categoryId, array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function findByCategoryId(int $categoryId, array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         return $this->findByCategory($categoryId, $filters, $perPage);
     }

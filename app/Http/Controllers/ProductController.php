@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $categoryId = $request->input('category_id');
         $filters = $request->only(['search', 'min_price', 'max_price']);
-        $perPage = (int) $request->input('per_page', 15);
+        $perPage = (int) $request->input('per_page', 8);
 
         $guestId = $request->attributes->get('guest_id');
         if ($categoryId) {

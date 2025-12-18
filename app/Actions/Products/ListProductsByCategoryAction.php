@@ -13,7 +13,7 @@ class ListProductsByCategoryAction
     }
 
 
-    public function execute(int $categoryId, array $filters = [], int $perPage = 15): LengthAwarePaginator
+    public function execute(int $categoryId, array $filters = [], int $perPage = 8): LengthAwarePaginator
     {
         return $this->productRepository->findByCategoryId($categoryId, $filters, $perPage);
     }
